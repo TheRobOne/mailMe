@@ -1,0 +1,22 @@
+{
+  "name": "webmailclient",
+  "version": "1.0.0",
+  "description": "simple web email client created as an academic project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "*",
+    "mongoose": "*",
+    "bcryptjs": "*",
+    "cors": "*",
+    "jsonwebtoken": "*",
+    "body-parser": "*",
+    "passport": "*",
+    "passport-jwt": "*"
+  },
+  "author": "Patryk Mazur, Michal Piatek, Maciej Rusek, Wojciech Sabat",
+  "license": "ISC"
+}
