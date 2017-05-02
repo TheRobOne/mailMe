@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 // app init
 const app = express();
 
-// users folder
+// users routes
 const users = require('./routes/users');
 
 const port = 3000;
@@ -20,7 +20,7 @@ app.use(cors());
 // body parser middleware
 app.use(bodyParser.json());
 
-// route to users folder
+// route to users
 app.use('/users', users);
 
 // route to the home page(Index)
