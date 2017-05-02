@@ -1,5 +1,5 @@
 {
-  "name": "webmailclient",
+  "name": "mailMe",
   "version": "1.0.0",
   "description": "simple web email client created as an academic project",
   "main": "app.js",
