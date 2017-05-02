@@ -9,9 +9,21 @@ const mongoose = require('mongoose');
 // app init
 const app = express();
 
+// users folder
+const users = require('./routes/users');
+
 const port = 3000;
 
-// route to the home page
+// allows access from any domain
+app.use(cors());
+
+// body parser middleware
+app.use(bodyParser.json());
+
+// route to users folder
+app.use('/users', users);
+
+// route to the home page(Index)
 app.get('/', (req, res) => {
     res.send('Invalid Endpoint');
 });
