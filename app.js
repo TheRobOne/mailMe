@@ -17,6 +17,9 @@ const port = 3000;
 // allows access from any domain
 app.use(cors());
 
+// set static folder ( sets view of the home page )
+app.use(express.static(path.join(__dirname, 'public')));
+
 // body parser middleware
 app.use(bodyParser.json());
 
