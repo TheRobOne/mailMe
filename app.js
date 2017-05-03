@@ -51,6 +51,10 @@ app.get('/', (req, res) => {
     res.send('Invalid Endpoint');
 });
 
+app.get('*', (req,res) => {
+    res.sendFile(path.join(__dirname, 'public/index.html'))
+});
+
 // server startup
 app.listen(port, () => {
     console.log( 'WebMailClient server started on port ' + port );
