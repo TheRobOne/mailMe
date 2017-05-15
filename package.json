@@ -16,7 +16,8 @@
     "jsonwebtoken": "*",
     "mongoose": "*",
     "passport": "*",
-    "passport-jwt": "*"
+    "passport-jwt": "*",
+    "xoauth2": "^1.2.0"
   },
   "author": "Patryk Mazur, Michal Piatek, Maciej Rusek, Wojciech Sabat",
   "license": "ISC"
