@@ -2,15 +2,15 @@
 <form (submit)="onSendSubmit()">
   <div class="form-group">
     <label for="sendingTo">To:</label>
-    <input type="text" class="form-control" id="sendingTo">
+    <input type="text" class="form-control" id="recipient" [(ngModel)]="newMail.recipient" [ngModelOptions]="{standalone: true}">
   </div>
   <div class="form-group">
     <label for="subject">Subject:</label>
-    <input type="text" class="form-control" id="subject">
+    <input type="text" class="form-control" id="subject" [(ngModel)]="newMail.subject" [ngModelOptions]="{standalone: true}">
   </div>
   <div class="form-group">
     <label for="text">Text:</label>
-    <textarea class="form-control" rows="5" id="text"></textarea>
+    <textarea class="form-control" rows="5" id="text" [(ngModel)]="newMail.text" [ngModelOptions]="{standalone: true}"></textarea>
   </div>
 
   <div style="text-align: right">
