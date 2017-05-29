@@ -24,7 +24,7 @@ export class SendMailComponent implements OnInit {
 
   onSendSubmit(){
     this.mailsService.sendMail(this.newMail);
-    this.router.navigate(['login']);
+    this.router.navigate(['dashboard']);
   }
 
 }
