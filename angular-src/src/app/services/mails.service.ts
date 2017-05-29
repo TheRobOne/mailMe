@@ -9,9 +9,15 @@ export class MailsService {
   constructor(private http: Http) { }
 
   sendMail(mail) {
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/mails/send', mail, { headers: headers })
-      .map(res => res.json());
-  }
+    var headers = new Headers();
+        var emailid = 'name=';// + usercreds.username;
+        headers.append('Content-Type', 'application/X-www-form-urlencoded');
+
+        this.http.post('http://localhost:3000/mails/sendmail', emailid, {headers: headers}).subscribe((data) => {
+          if(data.json().success) {
+              console.log('mail sent');
+            }
+        })
+
+    }
 }
