@@ -26,6 +26,9 @@ const app = express();
 // users routes
 const users = require('./routes/users');
 
+//mail routes
+const mails = require('./routes/mails');
+
 const port = 3000;
 
 // allows access from any domain
@@ -45,6 +48,9 @@ require('./config/passport')(passport);
 
 // route to users
 app.use('/users', users);
+
+// route to mails
+app.use('/mails', mails);
 
 // route to the home page(Index)
 app.get('/', (req, res) => {
