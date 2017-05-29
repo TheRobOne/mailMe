@@ -6,6 +6,10 @@ const cors = require('cors');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/database');
+const GoogleStrategy = require('passport-google-oauth2').Strategy;
+const googleCredentials = require('./config/google_credentials');
+const session = require('express-session');
+const RedisStore = require('connect-redis')( session );
 
 // connect to database
 mongoose.connect(config.database);
@@ -41,6 +45,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 
 // passport middleware
+app.use( session({
+	secret: 'cookie_secret',
+	name:   'kaas',
+	store:  new RedisStore({
+		host: '127.0.0.1',
+		port: 6379
+	}),
+	proxy:  true,
+    resave: true,
+    saveUninitialized: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -61,7 +76,58 @@ app.get('*', (req,res) => {
     res.sendFile(path.join(__dirname, 'public/index.html'))
 });
 
+var GOOGLE_CLIENT_ID      = googleCredentials.web.client_id,
+  GOOGLE_CLIENT_SECRET  = googleCredentials.web.client_secret;
+
+// Passport session setup.
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
+});
+
+// Use the GoogleStrategy within Passport.
+passport.use(new GoogleStrategy({
+    clientID:     GOOGLE_CLIENT_ID,
+    clientSecret: GOOGLE_CLIENT_SECRET,
+
+    callbackURL: "http://localhost:3000/auth/google/callback",
+    passReqToCallback   : true
+  },
+  function(request, accessToken, refreshToken, profile, done) {
+    process.nextTick(function () {
+
+      return done(null, profile);
+    });
+  }
+));
+
+// GET /auth/google, set scopes
+app.get('/auth/google', passport.authenticate('google', { scope: [
+       'https://mail.google.com/']
+}));
+
+
+// GET /auth/google/callback
+app.get( '/auth/google/callback',
+    	passport.authenticate( 'google', {
+    		successRedirect: '/',
+    		failureRedirect: '/login'
+}));
+
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
+
 // server startup
 app.listen(port, () => {
     console.log( 'WebMailClient server started on port ' + port );
 });
+
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  res.redirect('/login');
+}

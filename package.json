@@ -12,6 +12,7 @@
     "body-parser": "*",
     "cors": "*",
     "express": "*",
+    "express-sessions": "^1.0.6",
     "googleapis": "^19.0.0",
     "jsonwebtoken": "*",
     "mongoose": "*",
