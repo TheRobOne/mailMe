@@ -3,7 +3,8 @@ import { ValidateService } from '../../services/validate.service';
 import { AuthService } from '../../services/auth.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router } from '@angular/router';
-
+import {GoogleSignInSuccess} from 'angular-google-signin';
+const googleCredentials = require('../../../../../config/google_credentials');
 
 @Component({
   selector: 'app-register',
@@ -17,11 +18,13 @@ export class RegisterComponent implements OnInit {
   password: String
 
   constructor(
-    private validateService: ValidateService, 
+    private validateService: ValidateService,
     private flashMessagesService: FlashMessagesService,
     private authService: AuthService,
     private router: Router
     ) { }
+
+  private myClientId: string = googleCredentials.web.client_id;
 
   ngOnInit() {
   }
@@ -56,6 +59,16 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/register']);
       }
     });
+  }
+
+  onGoogleSignInSuccess(event: GoogleSignInSuccess) {
+    let googleUser: gapi.auth2.GoogleUser = event.googleUser;
+    let id: string = googleUser.getId();
+    let profile: gapi.auth2.BasicProfile = googleUser.getBasicProfile();
+    /*console.log('ID: ' +
+      profile
+        .getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());*/
   }
 
 }

@@ -11,6 +11,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import {GoogleSignInComponent} from 'angular-google-signin';
 
 import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
@@ -25,7 +26,7 @@ const appRoutes: Routes = [
   {path:'login', component: LoginComponent},
   {path:'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
   {path:'profile', component: ProfileComponent, canActivate:[AuthGuard]},
-  {path:'send', component: SendMailComponent},   
+  {path:'send', component: SendMailComponent},
 ]
 
 @NgModule({
@@ -37,7 +38,8 @@ const appRoutes: Routes = [
     HomeComponent,
     ProfileComponent,
     DashboardComponent,
-    SendMailComponent
+    SendMailComponent,
+    GoogleSignInComponent
   ],
   imports: [
     BrowserModule,
