@@ -18,3 +18,12 @@
   </div>
   <input type="submit" class="btn btn-primary" value="Submit">
 </form>
+
+<google-signin
+  [clientId]="myClientId"
+  [width]="myWidth"
+  [theme]="myTheme"
+  [scope]="myScope"
+  [longTitle]="myLongTitle"
+  (googleSignInSuccess)="onGoogleSignInSuccess($event)">
+</google-signin>
