@@ -3,11 +3,12 @@ const router = express.Router();
 
 const Mail = require('../models/mails');
 
-/*
+
 //send mail
-router.post('/send', (req, res, next) => {
+router.post('/sendmail', (req, res, next) => {
   let newMail = new Mail({
-    destination: req.body.destination,
+    from: 'Maciej Rusek <maciejrusek94@gmail.com>',
+    to: req.body.recipient,
     subject: req.body.subject,
     text: req.body.text
   });
@@ -21,11 +22,6 @@ router.post('/send', (req, res, next) => {
   });
 });
 
-// Send
-router.get('/send', (req, res, next) => {
-
-}); */
-
-router.post('/sendmail', Mail.sendMail);
+//router.post('/sendmail', Mail.sendMail);
 
 module.exports = router;
