@@ -50,10 +50,6 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes),
     FlashMessagesModule,
-<<<<<<< HEAD
-=======
-    PopupModule.forRoot()
->>>>>>> temp_work
   ],
   providers: [ValidateService, AuthService, AuthGuard, MailsService,PopupModule],
   bootstrap: [AppComponent]
