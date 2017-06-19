@@ -8,10 +8,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./send-mail.component.css']
 })
 export class SendMailComponent implements OnInit {
+  recipient: String;
+  subject: String;
+  text: String;
   newMail = {
-      recipient: '',
-      subject: '',
-      text: ''
+      recipient: this.recipient,
+      subject: this.subject,
+      text: this.text
     }
 
   constructor(

@@ -11,7 +11,7 @@ export class MailsService {
   sendMail(mail) {
     var headers = new Headers();
         var emailid = 'name=';// + usercreds.username;
-        headers.append('Content-Type', 'application/X-www-form-urlencoded');
+        headers.append('Content-Type', 'application/json');
 
         this.http.post('http://localhost:3000/mails/sendmail', emailid, {headers: headers}).subscribe((data) => {
           if(data.json().success) {
