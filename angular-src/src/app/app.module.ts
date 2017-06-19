@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes} from '@angular/router';
+import {PopupModule} from 'ng2-opd-popup';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -12,6 +13,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {GoogleSignInComponent} from 'angular-google-signin';
+
 
 import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
@@ -39,16 +41,17 @@ const appRoutes: Routes = [
     ProfileComponent,
     DashboardComponent,
     SendMailComponent,
-    GoogleSignInComponent
+    GoogleSignInComponent,
   ],
   imports: [
+    PopupModule.forRoot(),
     BrowserModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
-    FlashMessagesModule
+    FlashMessagesModule,
   ],
-  providers: [ValidateService, AuthService, AuthGuard, MailsService],
+  providers: [ValidateService, AuthService, AuthGuard, MailsService,PopupModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
